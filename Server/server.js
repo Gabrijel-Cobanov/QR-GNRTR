@@ -35,6 +35,10 @@ app.post('/api/ticket/generate', jwtCheck, async (req, res) => {
     const { vatin, firstName, lastName } = req.body;  // Extract user info from the request body
     const ownerOIB = vatin;  // Assuming 'vatin' is the user's OIB
 
+    if (!vatin || !firstName || !lastName) {
+        return res.status(400).json({ error: 'Missing required fields: vatin, name, and surname are required.' });
+    }
+
     try {
         // Insert or update the user in the Users table
         const userInsertQuery = `
