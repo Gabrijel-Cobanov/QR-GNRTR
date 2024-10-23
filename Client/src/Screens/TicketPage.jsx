@@ -5,12 +5,12 @@ import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
 
 function TicketPage() {
-  const { ticketId } = useParams(); // Extract ticketId from the URL
-  const [ticketData, setTicketData] = useState(null); // Use null as the initial state for ticketData
+  const { ticketId } = useParams();
+  const [ticketData, setTicketData] = useState(null);
   const { loginWithRedirect, isAuthenticated, isLoading } = useAuth0();
 
   useEffect(() => {
-    if (!isLoading) { // Only proceed if loading is complete
+    if (!isLoading) { 
       if (isAuthenticated && ticketId) {
         // Fetch ticket data from the backend
         axios.get(`http://localhost:5000/api/ticket/${ticketId}`, {
@@ -20,15 +20,14 @@ function TicketPage() {
         })
         .then(response => {
           console.log(response.data)
-          setTicketData(response.data); // Set the fetched ticket data
+          setTicketData(response.data);
         })
         .catch(error => {
           console.error('Error fetching ticket data:', error);
-          // Handle errors as needed, e.g., redirect or show a message
         });
       } else if (!isAuthenticated) {
         loginWithRedirect({
-          appState: { returnTo: window.location.pathname } // Redirect back after login
+          appState: { returnTo: window.location.pathname }
         });
       }
     }
