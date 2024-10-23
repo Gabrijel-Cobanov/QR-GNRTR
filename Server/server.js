@@ -99,7 +99,6 @@ app.get('/api/ticket/:id', async (req, res) => {
 });
 
 
-
 pool.connect()
     .then(() => console.log('Connected to the database!'))
     .catch(err => console.error('Connection error', err.stack));

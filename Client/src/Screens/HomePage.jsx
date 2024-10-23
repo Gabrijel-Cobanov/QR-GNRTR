@@ -11,7 +11,7 @@ function HomePage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/tickets/count').then(response => {
+    axios.get('https://qr-gnrtr.onrender.com/api/tickets/count').then(response => {
       setCount(response.data.count);
     });
 
@@ -27,7 +27,7 @@ function HomePage() {
         <div className="card">
         <h1>QR-GNRTR</h1>
         <h1>Generated Tickets: {count}</h1>
-        <h3>If you need to generate a ticket, send a POST request to: http://endpoint</h3>
+        <h3>If you need to generate a ticket, send a POST request to: https://qr-gnrtr.onrender.com/api/ticket/generate</h3>
 
         { isAuthenticated ? (
             <>

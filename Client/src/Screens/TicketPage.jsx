@@ -13,7 +13,7 @@ function TicketPage() {
     if (!isLoading) { 
       if (isAuthenticated && ticketId) {
         // Fetch ticket data from the backend
-        axios.get(`http://localhost:5000/api/ticket/${ticketId}`, {
+        axios.get(`https://qr-gnrtr.onrender.com/api/ticket/${ticketId}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`, // Include the token in the header
           },
